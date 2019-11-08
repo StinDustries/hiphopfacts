@@ -17,13 +17,60 @@ border-width: medium;
     position: relative;
     bottom: 0;
  }
+ 
+.fullscreen-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+}
+
+.fullscreen-bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    width: 300%;
+    left: -100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .fullscreen-bg {
+    background: url('../img/videoframe.jpg') center center / cover no-repeat;
+  }
+
+  .fullscreen-bg__video {
+    display: none;
+  }
+}
 </style>
 </head>
-<body id="background">
+<body>
   <iframe src="https://raw.githubusercontent.com/anars/blank-audio/master/250-milliseconds-of-silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
 <audio id="player" autoplay loop>
     <source src="RappersDelight.mp3" type="audio/mp3">
 </audio>
+<div class="fullscreen-bg">
+    <video loop autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+        <source src="Video.mp4" type="video/mp4">
+    </video>
+</div>
   <div id="container">
   <h1 style="text-align:center; background-color:white;" id="hiphopfact">Hip Hop History Month Facts</h1>
 <h3 style="text-align:center; background-color:white;" id="hiphopfact">Hip Hop History Fact 1: The four pillars of Hip Hop are Graffitti, DJing, MCing, and Bboying/Bgirling. Remember, Hip Hop is not a genre of music, but instead a lifestyle.</h3>
